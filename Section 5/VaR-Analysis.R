@@ -17,31 +17,31 @@ set.seed(312)
 specrBTC = ugarchspec(mean.model = list(armaOrder = c(1,1), include.mean = 1),
                       variance.model = list(model = "gjrGARCH", garchOrder = c(3,0)),
                       distribution.model = "sstd")
-fitrBTC = ugarchfit(spec = specrBTC, data = rBTC)
+fitrBTC = ugarchfit(spec = specrBTC, data = rBTC, solver = "hybrid")
 
 #LTC
 specrLTC = ugarchspec(mean.model = list(armaOrder = c(0,0), include.mean = 0),
                       variance.model = list(model = "sGARCH", garchOrder = c(1,1)),
                       distribution.model = "sstd")
-fitrLTC = ugarchfit(spec = specrLTC, data = rLTC)
+fitrLTC = ugarchfit(spec = specrLTC, data = rLTC, solver = "hybrid")
 
 #XMR
 specrXMR = ugarchspec(mean.model = list(armaOrder = c(0,0), include.mean = 0),
                       variance.model = list(model = "sGARCH", garchOrder = c(6,1)),
                       distribution.model = "sstd")
-fitrXMR = ugarchfit(spec = specrXMR, data = rXMR)
+fitrXMR = ugarchfit(spec = specrXMR, data = rXMR, solver = "hybrid")
 
 #XRP
 specrXRP = ugarchspec(mean.model = list(armaOrder = c(0,0), include.mean = 1),
                       variance.model = list(model = "sGARCH", garchOrder = c(1,1)),
                       distribution.model = "sstd")
-fitrXRP = ugarchfit(spec = specrXRP, data = rXRP)
+fitrXRP = ugarchfit(spec = specrXRP, data = rXRP, solver = "hybrid")
 
 #Sys
 specrSys = ugarchspec(mean.model = list(armaOrder = c(0,0), include.mean = 0),
                       variance.model = list(model = "sGARCH", garchOrder = c(6,0)),
                       distribution.model = "sstd")
-fitrSys = ugarchfit(spec = specrSys, data = rSys)
+fitrSys = ugarchfit(spec = specrSys, data = rSys, solver = "hybrid")
 
 ####################################### Value at Risk ############################################
 VaR_rBTC = as.vector(fitted(fitrBTC)) + as.vector(sigma(fitrBTC))*qdist("sstd", 0.05, shape = coef(fitrBTC)["shape"], skew = coef(fitrBTC)["skew"])
