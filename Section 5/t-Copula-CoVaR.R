@@ -42,7 +42,7 @@ specrXRP = ugarchspec(mean.model = list(armaOrder = c(0,0), include.mean = 1),
 fitrXRP = ugarchfit(spec = specrXRP, data = rXRP, solver = "hybrid")
 u3 = as.vector(pit(fitrXRP))
 
-#Sys
+#System
 specrSys = ugarchspec(mean.model = list(armaOrder = c(0,0), include.mean = 0),
                       variance.model = list(model = "sGARCH", garchOrder = c(6,0)),
                       distribution.model = "sstd")
