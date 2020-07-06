@@ -17,7 +17,7 @@ set.seed(312)
 specrBTC = ugarchspec(mean.model = list(armaOrder = c(1,1), include.mean = 1),
                       variance.model = list(model = "gjrGARCH", garchOrder = c(3,0)),
                       distribution.model = "sstd")
-fitrBTC = ugarchfit(spec = specrBTC, data = rBTC)
+fitrBTC = ugarchfit(spec = specrBTC, data = rBTC, solver = "hybrid")
 colBTC = round(c("AIC" = infocriteria(fitrBTC)[1]*length(rBTC), #'rugarch' computes AIC per observation
                  "LB" = Box.test(as.numeric(residuals(fitrBTC, standardize = T)), lag = 8, 
                                  fitdf = 2, type = c("Ljung-Box"))$p.value,
@@ -34,7 +34,7 @@ colBTC = round(c("AIC" = infocriteria(fitrBTC)[1]*length(rBTC), #'rugarch' compu
 specrLTC = ugarchspec(mean.model = list(armaOrder = c(0,0), include.mean = 0),
                       variance.model = list(model = "sGARCH", garchOrder = c(1,1)),
                       distribution.model = "sstd")
-fitrLTC = ugarchfit(spec = specrLTC, data = rLTC)
+fitrLTC = ugarchfit(spec = specrLTC, data = rLTC, solver = "hybrid")
 colLTC = round(c("AIC" = infocriteria(fitrLTC)[1]*length(rLTC),
                  "LB" = Box.test(as.numeric(residuals(fitrLTC, standardize = T)), lag = 8, 
                                  fitdf = 0, type = c("Ljung-Box"))$p.value,
@@ -51,7 +51,7 @@ colLTC = round(c("AIC" = infocriteria(fitrLTC)[1]*length(rLTC),
 specrXMR = ugarchspec(mean.model = list(armaOrder = c(0,0), include.mean = 0),
                       variance.model = list(model = "sGARCH", garchOrder = c(6,1)),
                       distribution.model = "sstd")
-fitrXMR = ugarchfit(spec = specrXMR, data = rXMR)
+fitrXMR = ugarchfit(spec = specrXMR, data = rXMR, solver = "hybrid")
 colXMR = round(c("AIC" = infocriteria(fitrXMR)[1]*length(rXMR),
                  "LB" = Box.test(as.numeric(residuals(fitrXMR, standardize = T)), lag = 8, 
                                  fitdf = 0, type = c("Ljung-Box"))$p.value,
@@ -68,7 +68,7 @@ colXMR = round(c("AIC" = infocriteria(fitrXMR)[1]*length(rXMR),
 specrXRP = ugarchspec(mean.model = list(armaOrder = c(0,0), include.mean = 1),
                       variance.model = list(model = "sGARCH", garchOrder = c(1,1)),
                       distribution.model = "sstd")
-fitrXRP = ugarchfit(spec = specrXRP, data = rXRP)
+fitrXRP = ugarchfit(spec = specrXRP, data = rXRP, solver = "hybrid")
 colXRP = round(c("AIC" = infocriteria(fitrXRP)[1]*length(rXRP),
                  "LB" = Box.test(as.numeric(residuals(fitrXRP, standardize = T)), lag = 8, 
                                  fitdf = 0, type = c("Ljung-Box"))$p.value,
@@ -85,7 +85,7 @@ colXRP = round(c("AIC" = infocriteria(fitrXRP)[1]*length(rXRP),
 specrSys = ugarchspec(mean.model = list(armaOrder = c(0,0), include.mean = 0),
                       variance.model = list(model = "sGARCH", garchOrder = c(6,0)),
                       distribution.model = "sstd")
-fitrSys = ugarchfit(spec = specrSys, data = rSys)
+fitrSys = ugarchfit(spec = specrSys, data = rSys, solver = "hybrid")
 colSys = round(c("AIC" = infocriteria(fitrSys)[1]*length(rSys),
                  "LB" = Box.test(as.numeric(residuals(fitrSys, standardize = T)), lag = 8, 
                                  fitdf = 0, type = c("Ljung-Box"))$p.value,
