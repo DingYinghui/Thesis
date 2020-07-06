@@ -165,7 +165,7 @@ SYS_OPT = SYS_ARMA_GARCH_red[order(SYS_ARMA_GARCH_red$AIC),][1,]
 specY = ugarchspec(mean.model = list(armaOrder = as.numeric(BTC_OPT[1:2]),include.mean = as.numeric(BTC_OPT[3])),
                    variance.model = list(model = "sGARCH", garchOrder = as.numeric(BTC_OPT[4:5])),
                    distribution.model = "sstd")
-fitBTC = ugarchfit(spec = specY, data = rBTC)
+fitBTC = ugarchfit(spec = specY, data = rBTC, solver = "hybrid")
 signbias(fitBTC) 
 #fails at 5% level: Go to Step 5
 
@@ -173,7 +173,7 @@ signbias(fitBTC)
 specY = ugarchspec(mean.model = list(armaOrder = as.numeric(LTC_OPT[1:2]),include.mean = as.numeric(LTC_OPT[3])),
                    variance.model = list(model = "sGARCH", garchOrder = as.numeric(LTC_OPT[4:5])),
                    distribution.model = "sstd")
-fitLTC = ugarchfit(spec = specY, data = rLTC)
+fitLTC = ugarchfit(spec = specY, data = rLTC, solver = "hybrid")
 signbias(fitLTC)
 #fine: Final model is found
 
@@ -181,7 +181,7 @@ signbias(fitLTC)
 specY = ugarchspec(mean.model = list(armaOrder = as.numeric(XMR_OPT[1:2]),include.mean = as.numeric(XMR_OPT[3])),
                    variance.model = list(model = "sGARCH", garchOrder = as.numeric(XMR_OPT[4:5])),
                    distribution.model = "sstd")
-fitXMR = ugarchfit(spec = specY, data = rXMR)
+fitXMR = ugarchfit(spec = specY, data = rXMR, solver = "hybrid")
 signbias(fitXMR)
 #fine: Final model is found
 
@@ -189,7 +189,7 @@ signbias(fitXMR)
 specY = ugarchspec(mean.model = list(armaOrder = as.numeric(XRP_OPT[1:2]),include.mean = as.numeric(XRP_OPT[3])),
                    variance.model = list(model = "sGARCH", garchOrder = as.numeric(XRP_OPT[4:5])),
                    distribution.model = "sstd")
-fitXRP = ugarchfit(spec = specY, data = rXRP)
+fitXRP = ugarchfit(spec = specY, data = rXRP, solver = "hybrid")
 signbias(fitXRP)
 #fine: Final model is found
 
@@ -197,7 +197,7 @@ signbias(fitXRP)
 specY = ugarchspec(mean.model = list(armaOrder = as.numeric(SYS_OPT[1:2]),include.mean = as.numeric(SYS_OPT[3])),
                    variance.model = list(model = "sGARCH", garchOrder = as.numeric(SYS_OPT[4:5])),
                    distribution.model = "sstd")
-fitSys = ugarchfit(spec = specY, data = rSys)
+fitSys = ugarchfit(spec = specY, data = rSys, solver = "hybrid")
 signbias(fitSys)
 #fine: Final model is found
 
@@ -210,7 +210,7 @@ BTC_OPT = BTC_ARMA_GJR_GARCH_red[order(BTC_ARMA_GJR_GARCH_red$AIC),][1,]
 specY = ugarchspec(mean.model = list(armaOrder = as.numeric(BTC_OPT[1:2]),include.mean = as.numeric(BTC_OPT[3])),
                    variance.model = list(model = "gjrGARCH", garchOrder = as.numeric(BTC_OPT[4:5])),
                    distribution.model = "sstd")
-fitBTC = ugarchfit(spec = specY, data = rBTC)
+fitBTC = ugarchfit(spec = specY, data = rBTC, solver = "hybrid")
 signbias(fitBTC) 
 #fine: Final model is found
 
