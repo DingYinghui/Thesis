@@ -99,6 +99,8 @@ getAllARMAGARCH = function(ret, ar.max = 6, ma.max = 6, arch.max = 6, garch.max 
   return(table)
 }
 
+set.seed(127)
+
 ############# Step 1: Calculate all ARMA(p,q) models and consider those fulfilling the LB #########
 BTC_ARMA = getAllARMA(rBTC, ar.max = 6, ma.max = 6)
 BTC_ARMA_red = BTC_ARMA[which(BTC_ARMA$LB > 0.05),]
