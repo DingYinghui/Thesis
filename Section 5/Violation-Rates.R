@@ -112,28 +112,28 @@ set.seed(123)
 #################################### normal-COPULA COVARS ########################################
 #BTC-LTC
 TIcop1 = fitCopula(copula = normalCopula(), data = cbind(v, u1), estimate.variance = F)
-norm_CoVaR_1 = get_BivaCoVaR(theta = TIcop1@estimate[1], cond.means = fitted(fitrBTC), 
+norm_CoVaR_1 = get_BivaCoVaR(theta = TIcop1@estimate, cond.means = fitted(fitrBTC), 
                              cond.sigmas = sigma(fitrBTC), shapeY = coef(fitrBTC)["shape"],
                              skewY = coef(fitrBTC)["skew"], alpha = 0.05, beta = 0.05,
                              copula = "normal")
 
 #BTC-XMR
 TIcop2 = fitCopula(copula = normalCopula(), data = cbind(v, u2), estimate.variance = F)
-norm_CoVaR_2 = get_BivaCoVaR(theta = TIcop2@estimate[1], cond.means = fitted(fitrBTC), 
+norm_CoVaR_2 = get_BivaCoVaR(theta = TIcop2@estimate, cond.means = fitted(fitrBTC), 
                              cond.sigmas = sigma(fitrBTC), shapeY = coef(fitrBTC)["shape"],
                              skewY = coef(fitrBTC)["skew"], alpha = 0.05, beta = 0.05,
                              copula = "normal")
 
 #BTC-XRP
 TIcop3 = fitCopula(copula = normalCopula(), data = cbind(v, u3), estimate.variance = F)
-norm_CoVaR_3 = get_BivaCoVaR(theta = TIcop3@estimate[1], cond.means = fitted(fitrBTC), 
+norm_CoVaR_3 = get_BivaCoVaR(theta = TIcop3@estimate, cond.means = fitted(fitrBTC), 
                              cond.sigmas = sigma(fitrBTC), shapeY = coef(fitrBTC)["shape"],
                              skewY = coef(fitrBTC)["skew"], alpha = 0.05, beta = 0.05,
                              copula = "normal")
 
 #SCoVaR
 TIcop4 = fitCopula(copula = normalCopula(), data = cbind(v, u4), estimate.variance = F)
-norm_CoVaR_4 = get_BivaCoVaR(theta = TIcop4@estimate[1], cond.means = fitted(fitrBTC), 
+norm_CoVaR_4 = get_BivaCoVaR(theta = TIcop4@estimate, cond.means = fitted(fitrBTC), 
                              cond.sigmas = sigma(fitrBTC), shapeY = coef(fitrBTC)["shape"],
                              skewY = coef(fitrBTC)["skew"], alpha = 0.05, beta = 0.05,
                              copula = "normal")
