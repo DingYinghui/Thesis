@@ -233,7 +233,7 @@ Clayton_CoVaR_2 = get_BivaCoVaR(theta = TIcop2@estimate, cond.means = fitted(fit
                                 copula = "clayton")
 
 #BTC-XRP
-TIcop3 = fitCopula(copula = claytonCopula(), data = cbind(v, u3), estimate.variance = F, method = "itau") #ML estimation failes
+TIcop3 = fitCopula(copula = claytonCopula(), data = cbind(v, u3), estimate.variance = F, method = "itau") #ML estimation fails
 Clayton_CoVaR_3 = get_BivaCoVaR(theta = TIcop3@estimate, cond.means = fitted(fitrBTC), 
                                 cond.sigmas = sigma(fitrBTC), shapeY = coef(fitrBTC)["shape"], 
                                 skewY = coef(fitrBTC)["skew"], alpha = 0.05, beta = 0.05,
