@@ -1,17 +1,17 @@
 library("quantmod")
 library("lubridate")
 
-#load S&P500 data
-SP500 = getSymbols(Symbols = "^GSPC", src = "yahoo", from = "1986-01-01", 
-                   to = "2020-01-01", auto.assign = F)
-SP500 = SP500$GSPC.Adjusted
-rSP500 = diff(log(as.vector(SP500)))
-
 #load DJ data
 DJ = getSymbols(Symbols = "^DJI", src = "yahoo", from = "1986-01-01", 
                 to = "2020-01-01", auto.assign = F)
 DJ = DJ$DJI.Adjusted
 rDJ = diff(log(as.vector(DJ)))
+
+#load S&P500 data
+SP500 = getSymbols(Symbols = "^GSPC", src = "yahoo", from = "1986-01-01", 
+                   to = "2020-01-01", auto.assign = F)
+SP500 = SP500$GSPC.Adjusted
+rSP500 = diff(log(as.vector(SP500)))
 
 #create plot
 time = as.character(floor_date(time(SP500[-1]), unit = "year"))
