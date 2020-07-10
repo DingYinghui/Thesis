@@ -57,7 +57,7 @@ evalBivariate = function(retX, retY, VaRX, VaRY, CoVaR){
 
 RatePipe = function(retY, retX, copula, AROrder, MAOrder, garchModel, 
                     margin.dist, alpha = 0.05, beta = 0.05){
-        if(!is.element(copula, c("normal", "t", "gumbel", "clayton"))){
+        if(!is.element(copula, c("normal", "t", "clayton", "gumbel"))){
                 stop("Please insert one of the considered copulae.")}
         retY = as.vector(retY)
         retX = as.vector(retX)
