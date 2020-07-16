@@ -386,6 +386,7 @@ evalVulnerability3X = function(retX1, retX2, retX3, retY, VaRX1, VaRX2, VaRX3, V
 #VaR evaluation
 window.size = 500
 
+length(which(rBTC[-c(1:window.size)] <= VaRBTC))/length(VaRBTC)
 length(which(rLTC[-c(1:window.size)] <= VaRLTC))/length(VaRLTC)
 length(which(rXMR[-c(1:window.size)] <= VaRXMR))/length(VaRXMR)
 length(which(rXRP[-c(1:window.size)] <= VaRXRP))/length(VaRXRP)
