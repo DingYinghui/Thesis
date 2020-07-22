@@ -3,7 +3,6 @@
 
 library("quantmod")
 library("rugarch")
-library("rmgarch")
 library("copula")
 
 #load data
