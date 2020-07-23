@@ -34,3 +34,6 @@ body(plot.zoo2) <- as.call(bl)
 #create plot
 plot.zoo2(cbind("DJIA" = rDJ, "S&P500" = rSP500), col = as.list(c("darkblue", "blue")),
           main = "", ylim = c(-0.25, 0.115), xlab = "Time", xaxt = "n")
+
+#Kendall's Tau
+round(cor(cbind(rDJ, rSP500), method = "kendall"), 4)
