@@ -54,11 +54,11 @@ OneStudyBiv = function(copula, tau, alpha, beta, sample.size = 10000, seed){
   for(i in 1:100){
     if(copula == "clayton"){
       repeat{
-        #Step 1: Sample data
+        #Sample data
         sample = rCopula(n = sample.size, copula = claytonCopula(param = param))
         colnames(sample) = c("y", "x")
         
-        #Step 2: Estimate copula
+        #Estimate copula
         copEST = try(fitCopula(copula = claytonCopula(), data = sample, 
                                estimate.variance = F, method = "ml"), silent = T)
         if(class(copEST) != "try-error"){break}
@@ -68,11 +68,11 @@ OneStudyBiv = function(copula, tau, alpha, beta, sample.size = 10000, seed){
     
     if(copula == "gumbel"){
       repeat{
-        #Step 1: Sample data
+        #Sample data
         sample = rCopula(n = sample.size, copula = gumbelCopula(param = param))
         colnames(sample) = c("y", "x")
         
-        #Step 2: Estimate copula
+        #Estimate copula
         copEST = try(fitCopula(copula = gumbelCopula(), data = sample, 
                                estimate.variance = F, method = "ml"), silent = T)
         if(class(copEST) != "try-error"){break}
@@ -80,7 +80,7 @@ OneStudyBiv = function(copula, tau, alpha, beta, sample.size = 10000, seed){
       cop = gumbelCopula(param = copEST@estimate)
     }
     
-    #Step 3: Calculate CoVaR and VaR
+    #Calculate CoVaR and VaR
     MinF = function(v){
       return(pCopula(c(v, alpha), copula = cop) - alpha*beta)
     }
@@ -88,7 +88,7 @@ OneStudyBiv = function(copula, tau, alpha, beta, sample.size = 10000, seed){
                     maxiter = 10000000)$root
     VaRX = quantile(sample[,"x"], probs = alpha)
     
-    #Step 4: Evaluate
+    #Evaluate
     tmp = eval(retX = sample[,"x"], retY = sample[,"y"], VaRX = VaRX, 
                CoVaR = rep(CoVaR, sample.size))
     res = c(res, tmp)
@@ -112,11 +112,11 @@ OneStudyMulti = function(copula, tau, alpha, beta, sample.size = 10000, seed){
   for(i in 1:100){
     if(copula == "clayton"){
       repeat{
-        #Step 1: Sample data
+        #Sample data
         sample = rCopula(n = sample.size, copula = claytonCopula(param = param, dim = 3))
         colnames(sample) = c("y", "x1", "x2")
         
-        #Step 2: Estimate copula
+        #Estimate copula
         copEST = try(fitCopula(copula = claytonCopula(dim = 3), data = sample, 
                                estimate.variance = F, method = "ml"), silent = T)
         if(class(copEST) != "try-error"){break}
@@ -126,11 +126,11 @@ OneStudyMulti = function(copula, tau, alpha, beta, sample.size = 10000, seed){
     
     if(copula == "gumbel"){
       repeat{
-        #Step 1: Sample data
+        #Sample data
         sample = rCopula(n = sample.size, copula = gumbelCopula(param = param, dim = 3))
         colnames(sample) = c("y", "x1", "x2")
         
-        #Step 2: Estimate copula
+        #Estimate copula
         copEST = try(fitCopula(copula = gumbelCopula(dim = 3), data = sample, 
                                estimate.variance = F, method = "ml"), silent = T)
         if(class(copEST) != "try-error"){break}
@@ -138,7 +138,7 @@ OneStudyMulti = function(copula, tau, alpha, beta, sample.size = 10000, seed){
       cop = gumbelCopula(param = copEST@estimate, dim = 3)
     }
     
-    #Step 3: Calculate MCoVaR and VaR
+    #Calculate MCoVaR and VaR
     MinF = function(v){
       return(pCopula(c(v, alpha, alpha), copula = cop) - 
                pCopula(c(1, alpha, alpha), copula = cop)*beta)
@@ -148,7 +148,7 @@ OneStudyMulti = function(copula, tau, alpha, beta, sample.size = 10000, seed){
     VaRX1 = quantile(sample[,"x1"], probs = alpha)
     VaRX2 = quantile(sample[,"x2"], probs = alpha)
     
-    #Step 4: Evaluate
+    #Evaluate
     tmp = evalMulti(retX1 = sample[,"x1"], retX2 = sample[,"x2"], retY = sample[,"y"],
                     VaRX1 = VaRX1, VaRX2 = VaRX2, MCoVaR = rep(MCoVaR, sample.size))
     res = c(res, tmp)
@@ -171,11 +171,11 @@ OneStudyVulnerability = function(copula, tau, alpha, beta, sample.size = 10000, 
   for(i in 1:100){
     if(copula == "clayton"){
       repeat{
-        #Step 1: Sample data
+        #Sample data
         sample = rCopula(n = sample.size, copula = claytonCopula(param = param, dim = 3))
         colnames(sample) = c("y", "x1", "x2")
         
-        #Step 2: Estimate copula
+        #Estimate copula
         copEST = try(fitCopula(copula = claytonCopula(dim = 3), data = sample, 
                                estimate.variance = F, method = "ml"), silent = T)
         if(class(copEST) != "try-error"){break}
@@ -185,11 +185,11 @@ OneStudyVulnerability = function(copula, tau, alpha, beta, sample.size = 10000, 
     
     if(copula == "gumbel"){
       repeat{
-        #Step 1: Sample data
+        #Sample data
         sample = rCopula(n = sample.size, copula = gumbelCopula(param = param, dim = 3))
         colnames(sample) = c("y", "x1", "x2")
         
-        #Step 2: Estimate copula
+        #Estimate copula
         copEST = try(fitCopula(copula = gumbelCopula(dim = 3), data = sample, 
                                estimate.variance = F, method = "ml"), silent = T)
         if(class(copEST) != "try-error"){break}
@@ -197,7 +197,7 @@ OneStudyVulnerability = function(copula, tau, alpha, beta, sample.size = 10000, 
       cop = rotCopula(gumbelCopula(param = copEST@estimate, dim = 3))
     }
     
-    #Step 3: Calculate VCoVaR and VaR
+    #Calculate VCoVaR and VaR
     MinF = function(v){
       return((v - pCopula(c(1, 1-alpha, 1-alpha), copula = cop) + 
                 pCopula(c(1-v, 1-alpha, 1-alpha), copula = cop)) -
@@ -208,7 +208,7 @@ OneStudyVulnerability = function(copula, tau, alpha, beta, sample.size = 10000, 
     VaRX1 = quantile(sample[,"x1"], probs = alpha)
     VaRX2 = quantile(sample[,"x2"], probs = alpha)
     
-    #Step 4: Evaluate
+    #Evaluate
     tmp = evalVulnerability(retX1 = sample[,"x1"], retX2 = sample[,"x2"], retY = sample[,"y"],
                             VaRX1 = VaRX1, VaRX2 = VaRX2, VCoVaR = rep(VCoVaR, sample.size))
     res = c(res, tmp)
