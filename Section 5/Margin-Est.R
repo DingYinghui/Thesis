@@ -229,3 +229,10 @@ coef(fitLTC)
 coef(fitXMR)
 coef(fitXRP)
 coef(fitSys)
+
+#Standard errors
+round(fitBTC@fit$se.coef,4)
+round(fitLTC@fit$se.coef,4)
+round(fitXMR@fit$se.coef,4)
+round(fitXRP@fit$se.coef,4)
+round(fitSys@fit$se.coef,4)
