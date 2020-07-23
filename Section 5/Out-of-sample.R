@@ -84,12 +84,6 @@ get_VCoVaR = function(copula, theta, df = NULL, foreY, alpha = 0.05, beta = 0.05
   return(VCoVaR)
 }
 
-#Procedure: Run a rolling window forecast
-#1. Estimate GJR-GARCH(1,1) model with skew-t-innovations using window.size observations
-#2. Estimate static copula based on the PIT standardized residuals
-#3. Forecast n.ahead via Y_t margin model and forecast CoVaR assuming copula stays constant
-#4. Move window for n.ahead observations and go back to 1.
-
 ########################### OUT OF SAMPLE FORECASTING USING ROLLING WINDOW ########################
 
 getVaR_OOS = function(CurrSample, n.ahead, alpha){
